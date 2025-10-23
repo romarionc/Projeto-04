@@ -1,4 +1,4 @@
-# [Nome do Seu Projeto Aqui]
+# ONG - Comida para todos.
 
 > Projeto web completo desenvolvido como avaliação final, abrangendo desde a estruturação semântica com HTML5 até o deploy final com práticas profissionais de acessibilidade, otimização e versionamento.
 
