@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG - Comida para Todos</title>
+
+  <link rel="icon" href="assets/icons/logo_32x32.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/logo_180x180.png">
+
+  <link rel="stylesheet" href="css/feedback-components.css">
+  <link rel="stylesheet" href="css/style_index.css">
+</head>
+
+<body>
+  <header>
+    <h1>ONG - Comida para todos</h1>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <nav id="main-nav">
+      <ul>
+        <li><a href="#/" data-route="/">Página inicial</a></li>
+        <li class="dropdown">
+          <a href="#/projetos" data-route="/projetos">Projetos sociais</a>
+          <ul class="submenu">
+            <li><a href="#/projeto-cozinha">Cozinha Comunitária</a></li>
+            <li><a href="#/projeto-distribuicao">Distribuição Noturna</a></li>
+            <li><a href="#/projeto-horta">Horta Urbana</a></li>
+            <li><a href="#/projeto-eventos">Parcerias e Eventos</a></li>
+          </ul>
+        </li>
+        <li><a href="#/cadastro" data-route="/cadastro">Cadastro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="spa-content">
+    <!-- Conteúdo carregado dinamicamente -->
+  </main>
+
+  <footer>
+    <br>
+    <p>&copy; 2025 ONG - Comida para todos</p>
+    <br>
+  </footer>
+
+  <div id="toast-container"></div>
+  <div id="feedback-modal" class="modal" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title" class="modal-title">Título do Modal</h3>
+        <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+      </div>
+      <div id="modal-body" class="modal-body">
+        <p>Conteúdo do modal...</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-action="cancel">Cancelar</button>
+        <button class="btn btn-primary" data-action="confirm">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/feedback-components.js"></script>
+  <!-- tem que ter o tipo module se não quebra -->
+  <script type="module" src="js/spa-router.js"></script>
+</body>
+
+</html>

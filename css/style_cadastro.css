@@ -1,0 +1,481 @@
+:root {
+  /* 8 cores especificas */
+  --cor-primary: #ff7a00; /* para botões e links */
+  --cor-secondary: #005a9c; /* para títulos e destaques */
+  --color-text-primary: #212529; /* para texto principal */
+  --color-text-secondary: #6c757d; /* para textos de apoio */
+  --cor-background: #f8f9fa; /* fundo da página */
+  --cor-surface: #ffffff; /* caixas de conteúdo (cards, seções) */
+  --cor-border: #dee2e6; /* bordas e divisórias */
+  --cor-success: #28a745; /* Verde para mensagens de sucesso (ex: cadastro) */
+
+  /* setar minha propria fonte */
+  --font-family-base: "Nunito Sans", system-ui, -apple-system, sans-serif;
+  /* agora os pesos */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  /* altura da linha */
+  --line-height-base: 1.6;
+
+  /* Tamanhos Hierárquicos (Mínimo: 5) */
+  /* 1 rem = 16px */
+  --font-size-h1: 3rem; /* 40px  */
+  --font-size-h2: 2.5rem; /* 32px */
+  --font-size-h3: 2rem; /* 24px */
+  --font-size-h4: 1.5rem; /* 12px */
+  --font-size-h5: 1rem; /* 12px */
+  --font-size-body: 1.125rem; /* 18px */
+  --font-size-small: 0.875rem; /* 14px */
+
+  /* espaçamento modular */
+  /* 1 rem = 16px */
+  --espaco_modular-xs: 0.5rem; /* 8px */
+  --espaco_modular-s: 1rem; /* 16px */
+  --espaco_modular-m: 1.5rem; /* 24px */
+  --espaco_modular-l: 2rem; /* 32px */
+  --espaco_modular-xl: 3rem; /* 48px */
+  --espaco_modular-xxl: 4rem; /* 64px */
+
+  /* --- BREAKPOINTS RESPONSIVOS --- */
+  --bp-xs: 480px; /* Extra pequeno */
+  --bp-sm: 768px; /* Pequeno (Tablet) */
+  --bp-md: 1024px; /* Médio (Laptop) */
+  --bp-lg: 1280px; /* Grande (Monitor) */
+  --bp-xl: 1440px; /* Extra Grande */
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--cor-background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--cor-secondary);
+  margin-top: var(--espaco_modular-m);
+  margin-bottom: var(--espaco_modular-s);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+h2 {
+  font-size: var(--font-size-h2);
+}
+h3 {
+  font-size: var(--font-size-h3);
+}
+h4 {
+  font-size: var(--font-size-h4);
+}
+h5 {
+  font-size: var(--font-size-h5);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--espaco_modular-s);
+}
+
+a {
+  color: var(--cor-primary);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  color: var(--cor-secondary);
+}
+
+/* Aplicando espaçamento no layout principal (Mobile-First) */
+header,
+main,
+footer {
+  max-width: none; /* Remove a largura fixa */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--espaco_modular-l);
+  box-sizing: border-box; /* Garante que o padding não estoure a tela */
+}
+
+/* Pequeno (Tablet) - 768px */
+@media (min-width: var(--bp-sm)) {
+  header,
+  main,
+  footer {
+    max-width: 720px;
+  }
+}
+
+/* Médio (Laptop) - 1024px */
+@media (min-width: var(--bp-md)) {
+  header,
+  main,
+  footer {
+    max-width: 960px; /* Seu container original */
+  }
+}
+
+/* Grande (Monitores) - 1280px */
+@media (min-width: var(--bp-lg)) {
+  header,
+  main,
+  footer {
+    max-width: 1140px;
+  }
+}
+
+/* Extra Grande (Telas amplas) - 1440px+ */
+@media (min-width: var(--bp-xl)) {
+  header,
+  main,
+  footer {
+    max-width: 1320px;
+  }
+}
+
+main section {
+  margin-bottom: var(--espaco_modular-xl);
+  padding: var(--espaco_modular-l);
+  background-color: var(--cor-surface);
+  border: 1px solid var(--cor-border);
+  border-radius: var(--espaco_modular-xs);
+}
+
+header {
+  border-bottom: 2px solid var(--cor-primary);
+  padding-bottom: var(--espaco_modular-m);
+}
+
+footer {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  border-top: 1px solid var(--cor-border);
+  margin-top: var(--espaco_modular-xl);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--espaco_modular-xs);
+}
+
+/* --- ESTILOS ESPECÍFICOS DO FORMULÁRIO --- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco_modular-m);
+}
+
+fieldset {
+  border: 1px solid var(--cor-border);
+  border-radius: var(--espaco_modular-xs);
+  padding: var(--espaco_modular-l);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco_modular-m);
+}
+
+legend {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--cor-secondary);
+  padding: 0 var(--espaco_modular-xs);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco_modular-xs);
+}
+
+label {
+  font-weight: var(--font-weight-bold);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: var(--font-family-base);
+  border: 1px solid var(--cor-border);
+  border-radius: var(--espaco_modular-xs);
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--cor-primary);
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.2);
+}
+
+/* --- VALIDAÇÃO VISUAL --- */
+input:user-invalid,
+select:user-invalid {
+  border-color: #dc3545; /* Vermelho para erro */
+}
+
+input:user-valid,
+select:user-valid {
+  border-color: var(--cor-success); /* Verde para sucesso */
+}
+
+/* Estilo genérico para botões */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--espaco_modular-xs);
+  border: 1px solid transparent;
+  font-weight: var(--font-weight-bold);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-align: center;
+}
+.btn:hover {
+  opacity: 0.85;
+}
+.btn-primary {
+  background-color: var(--cor-primary);
+  color: white;
+}
+.btn-secondary {
+  background-color: var(--color-text-secondary);
+  color: white;
+}
+
+.form-submit-btn {
+  align-self: flex-start;
+}
+/* --- FIM DO FORMULÁRIO --- */
+
+/* --- ESTILOS DO DROPDOWN --- */
+/* (Estes estilos são para o desktop, mas serão ajustados no mobile) */
+.dropdown {
+  position: relative;
+}
+
+.submenu {
+  list-style: none;
+  padding: var(--espaco_modular-xs) 0;
+  margin: 0;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--cor-surface);
+  border: 1px solid var(--cor-border);
+  border-radius: var(--espaco_modular-xs);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 220px;
+  z-index: 100;
+}
+
+.dropdown:hover .submenu {
+  display: block;
+}
+
+.submenu li a {
+  display: block;
+  padding: var(--espaco_modular-s) var(--espaco_modular-m);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-regular);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.submenu li a:hover {
+  background-color: var(--cor-background);
+  color: var(--cor-primary);
+  text-decoration: none;
+}
+
+/* --- NAVEGAÇÃO RESPONSIVA (MOBILE-FIRST) --- */
+
+header {
+  /* Garante que o botão fique posicionado relativo ao header */
+  position: relative;
+}
+
+.nav-toggle {
+  display: block; /* Visível por padrão (mobile) */
+  position: absolute;
+  /* Ajuste top/right com base no padding do seu header */
+  top: 2.2rem;
+  right: var(--espaco_modular-l);
+  width: 32px;
+  height: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1010; /* Acima do menu */
+  padding: 0;
+}
+
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--cor-secondary); /* Cor do título */
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-line:nth-child(2) {
+  margin: 6px 0;
+}
+
+/* --- Estilos do Menu (Mobile) --- */
+nav {
+  /* Escondido fora da tela por padrão */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: var(--cor-surface);
+  border-left: 1px solid var(--cor-border);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  /* Ajustar padding para o menu vertical */
+  padding: var(--espaco_modular-xxl) var(--espaco_modular-l);
+  visibility: hidden;
+}
+
+/* --- Estado Aberto (via JS) --- */
+nav.nav-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* Animação do botão "X" */
+.nav-toggle.is-active .hamburger-line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.nav-toggle.is-active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.is-active .hamburger-line:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Trava o scroll da página quando o menu está aberto */
+body.nav-lock-scroll {
+  overflow: hidden;
+}
+
+/* --- Estilos da Lista (Mobile) --- */
+/* Esta é a regra principal para a lista do menu (mobile) */
+nav > ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco_modular-s); /* Espaçamento menor no mobile */
+  width: 100%;
+  list-style: none; /* Garantindo que não haja marcadores */
+  padding: 0; /* Garantindo que não haja padding */
+  margin: 0; /* Garantindo que não haja margem */
+}
+
+/* Dropdown mobile (simplificado) */
+.dropdown .submenu {
+  display: block; /* Sempre visível no menu mobile */
+  position: static;
+  background: none;
+  border: none;
+  box-shadow: none;
+  min-width: unset;
+  padding: 0 0 0 var(--espaco_modular-s); /* Indentação */
+}
+
+.submenu li a {
+  padding: var(--espaco_modular-xs) 0;
+  color: var(--color-text-secondary); /* Cor mais suave */
+}
+.submenu li a:hover {
+  background: none;
+  color: var(--cor-primary);
+}
+
+/* --- BREAKPOINT: DISPOSITIVOS MAIORES (PÓS-MOBILE) --- */
+/* A partir de 480px, volta ao menu desktop */
+/* não consegui usar a variavel, pois não estav funcionando. */
+@media (min-width: 480px) {
+  .nav-toggle {
+    display: none; /* Esconde o hamburger */
+  }
+
+  /* Restaura o layout da <nav> */
+  nav {
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    visibility: visible;
+  }
+
+  /* Restaura o layout flex do menu principal */
+  nav > ul {
+    display: flex;
+    flex-direction: row;
+    gap: var(--espaco_modular-m);
+    width: auto; /* Restaura a largura automática */
+  }
+
+  /*Impede que os links principais quebrem *** */
+  nav > ul > li > a {
+    white-space: nowrap;
+  }
+
+  /* Restaura o layout do dropdown */
+  .dropdown .submenu {
+    display: none; /* Esconde novamente para o hover */
+    position: absolute; /* Devolve a posição */
+    background-color: var(--cor-surface);
+    border: 1px solid var(--cor-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 220px;
+    padding: var(--espaco_modular-xs) 0;
+  }
+  .dropdown:hover .submenu {
+    display: block; /* Reativa o hover */
+  }
+  .submenu li a {
+    padding: var(--espaco_modular-s) var(--espaco_modular-m);
+    color: var(--color-text-primary);
+  }
+  .submenu li a:hover {
+    background-color: var(--cor-background);
+    color: var(--cor-primary);
+  }
+}
