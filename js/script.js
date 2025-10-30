@@ -59,22 +59,37 @@ function setupCarousel() {
     wrapper.style.transform = `translateX(${offsetPx}px)`;
   }
 
-  nextBtn.addEventListener("click", () => {
+  function showNext() {
     currentIndex++;
     // Se passar do máximo, volta ao início, tava bugando
     if (currentIndex > maxIndex) {
       currentIndex = 0;
     }
     updateCarousel();
-  });
+  }
 
-  prevBtn.addEventListener("click", () => {
+  function showPrev() {
     currentIndex--;
     // Se for menor que 0, vai para o fim
     if (currentIndex < 0) {
       currentIndex = maxIndex;
     }
     updateCarousel();
+  }
+
+  nextBtn.addEventListener("click", showNext);
+  prevBtn.addEventListener("click", showPrev);
+
+  // Adiciona navegação pelas setas do teclado
+  // Isso funciona porque adicionamos tabindex="0" ao .carousel-container no template
+  container.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault(); // Impede o scroll da página
+      showPrev();
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault(); // Impede o scroll da página
+      showNext();
+    }
   });
 
   window.addEventListener("resize", calculateLayout);
@@ -84,10 +99,3 @@ function setupCarousel() {
 export function initCarousel() {
   setupCarousel();
 }
-// gerou conflito no carrocel
-// // tenho que garantir o carregamento fora do spa
-// if (document.readyState === "loading") {
-//   document.addEventListener("DOMContentLoaded", setupCarousel);
-// } else {
-//   setupCarousel();
-// }

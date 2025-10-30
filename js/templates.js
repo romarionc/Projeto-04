@@ -4,7 +4,7 @@ function renderCarouselItems(imagens) {
   return imagens
     .map(
       (img) => `
-    <div class="grid-item">
+    <div class="grid-item" role="group" aria-label="Slide">
       <img src="${img.src}" alt="${img.alt}">
     </div>
   `
@@ -38,15 +38,15 @@ export function templateProjetos(dados) {
 
     <section id="carrocel">
       <h3>${dados.titulo}</h3>
-      <div class="carousel-container">
+      <div class="carousel-container" tabindex="0" role="region" aria-label="Carrossel de projetos em ação">
         <div class="carousel-wrapper">
           
           ${renderCarouselItems(dados.imagensCarousel)}
 
         </div>
 
-        <button id="prevBtn" class="nav-btn">‹</button>
-        <button id="nextBtn" class="nav-btn">›</button>
+        <button id="prevBtn" class="nav-btn" aria-label="Slide anterior">‹</button>
+        <button id="nextBtn" class="nav-btn" aria-label="Próximo slide">›</button>
       </div>
     </section>
 

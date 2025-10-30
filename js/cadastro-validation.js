@@ -19,6 +19,13 @@ function setupCadastroValidation() {
         "Por favor, preencha todos os campos obrigatórios corretamente.",
         "warning"
       );
+
+      // Foca no primeiro campo inválido
+      const firstInvalidField = form.querySelector(":invalid");
+      if (firstInvalidField) {
+        firstInvalidField.focus();
+      }
+
       return;
     }
 
@@ -62,25 +69,3 @@ function setupCadastroValidation() {
 export function initCadastroValidation() {
   setupCadastroValidation();
 }
-
-// // Exporta a função de init para o spa-router
-// export function initCadastroValidation() {
-//   setupCadastroValidation();
-// }
-
-// // Fallback para caso o script seja carregado fora do SPA (ex: <script src="...">)
-// if (document.readyState === "loading") {
-//   document.addEventListener("DOMContentLoaded", setupCadastroValidation);
-// } else if (!document.getElementById("spa-content")) {
-//   // Só executa o setup se NÃO estivermos em modo SPA
-//   setupCadastroValidation();
-// }
-// conflito no carrocel
-// se o script for carregado <script> normalmente antes do DOMContentLoaded
-// if (document.readyState === "loading") {
-//   document.addEventListener("DOMContentLoaded", setupCadastroValidation);
-// } else {
-//   // se o HTML já estiver pronto — não faz nada aqui
-//   // chama o setup se o form existir no DOM (padrão para uso não-SPA)
-//   setupCadastroValidation();
-// }

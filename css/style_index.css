@@ -403,3 +403,28 @@ nav > ul {
     color: var(--cor-primary);
   }
 }
+/* --- ESTILOS ADICIONAIS PARA DROPDOWN ACESSÍVEL --- */
+
+/* Esconde o submenu por padrão */
+@media (min-width: 480px) {
+  .dropdown .submenu {
+    display: none;
+    /* (O resto dos seus estilos .submenu já estão corretos: 
+       position: absolute, background, etc.) 
+    */
+  }
+
+  /* Exibe o submenu quando o JS adicionar a classe .submenu-open (via teclado/clique) */
+  .dropdown .submenu.submenu-open {
+    display: block;
+  }
+
+  /* Mantém o comportamento de HOVER para usuários de mouse */
+  .dropdown:hover .submenu {
+    display: block;
+  }
+}
+
+/* No mobile (abaixo de 480px), seu CSS original já força 
+  'display: block' no submenu, então não precisamos de regras extras.
+*/
