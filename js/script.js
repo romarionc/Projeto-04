@@ -25,8 +25,6 @@ function setupCarousel() {
     const containerWidth = container.offsetWidth;
 
     // Pega a largura do primeiro item (assume que todos são iguais)
-    //  getBoundingClientRect para mais precisão (inclui padding/border)
-
     if (items[0]) {
       itemWidth = items[0].offsetWidth;
     } else {
@@ -37,7 +35,6 @@ function setupCarousel() {
     itemsVisible = Math.max(1, Math.floor(containerWidth / itemWidth));
 
     // Calcula o índice máximo permitido
-    // Se temos 12 itens e 5 visíveis, o maxIndex é 7 (12 - 5)
     maxIndex = items.length - itemsVisible;
 
     // Garante que o índice atual não seja inválido após redimensionar
@@ -54,14 +51,13 @@ function setupCarousel() {
 
   function updateCarousel() {
     // Muda a lógica: move em pixels (itemWidth) em vez de %
-    // Isso garante que desliza exatamente um item
     const offsetPx = currentIndex * -itemWidth;
     wrapper.style.transform = `translateX(${offsetPx}px)`;
   }
 
   function showNext() {
     currentIndex++;
-    // Se passar do máximo, volta ao início, tava bugando
+    // Se passar do máximo, volta ao início
     if (currentIndex > maxIndex) {
       currentIndex = 0;
     }
@@ -81,7 +77,7 @@ function setupCarousel() {
   prevBtn.addEventListener("click", showPrev);
 
   // Adiciona navegação pelas setas do teclado
-  // Isso funciona porque adicionamos tabindex="0" ao .carousel-container no template
+  // Funciona por causa do tabindex="0" no .carousel-container
   container.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") {
       e.preventDefault(); // Impede o scroll da página

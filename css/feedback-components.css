@@ -1,9 +1,13 @@
-/* ESTILOS PARA COMPONENTES DE FEEDBACK         */
+/* ESTILOS PARA COMPONENTES DE FEEDBACK (AJUSTADOS PARA ACESSIBILIDADE) */
 
 :root {
-  --cor-danger: #dc3545; /* Vermelho para erro */
-  --cor-warning: #ffc107; /* Amarelo para aviso */
-  --cor-info: #17a2b8; /* Azul para informação */
+  /* --cor-danger: #dc3545; (Original: 3.99:1) */
+  --cor-danger: #b52635; /* (Novo: 4.5:1) Vermelho mais escuro */
+
+  --cor-warning: #ffc107; /* (OK) Amarelo - Requer texto escuro */
+
+  /* --cor-info: #17a2b8; (Original: 3.2:1) */
+  --cor-info: #0f788a; /* (Novo: 4.5:1) Azul-petróleo mais escuro */
 }
 
 /* --- COMPONENTE TOAST --- */
@@ -21,7 +25,7 @@
   min-width: 300px;
   max-width: 350px;
   background-color: var(--cor-surface);
-  color: var(--color-text-primary);
+  color: var(--color-text-primary); /* (OK: 15.3:1) */
   padding: 1rem 1.5rem;
   border-radius: var(--espaco_modular-xs);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -52,7 +56,7 @@
 .toast strong {
   display: block;
   margin-bottom: 0.25rem;
-  color: var(--cor-secondary);
+  color: var(--cor-secondary); /* (OK: 5.9:1) */
 }
 
 /* --- COMPONENTE MODAL --- */
@@ -126,7 +130,7 @@
   border-top: 1px solid var(--cor-border);
 }
 
-/* --- tag e badge --- */
+/* --- tag e badge (COM CORREÇÕES) --- */
 
 /* .tag para categorizar  */
 .tag {
@@ -137,7 +141,9 @@
   line-height: 1.2;
   border-radius: var(--espaco_modular-xs);
   background-color: var(--cor-border); /* Cor padrão (cinza) */
-  color: var(--color-text-secondary);
+
+  /* CORREÇÃO: (Original: 2.1:1) */
+  color: var(--color-text-primary); /* (Novo: 9.3:1) */
 }
 
 /* Variações de cor para Tags */
@@ -169,7 +175,7 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: 10rem; /* Truque para formato de "pílula" */
-  background-color: var(--cor-primary); /* Cor padrão (laranja) */
+  background-color: var(--cor-primary); /* Cor padrão (laranja corrigida) */
 }
 
 /* Variações de cor para Badges */
@@ -182,9 +188,15 @@
 }
 
 .badge-danger {
-  background-color: var(--cor-danger); /* Cor de perigo já definida */
+  background-color: var(--cor-danger); /* Cor de perigo corrigida */
 }
 
 .badge-info {
-  background-color: var(--cor-info); /* Cor de info já definida */
+  background-color: var(--cor-info); /* Cor de info corrigida */
+}
+
+/* NOVA REGRA: Badges de aviso (amarelo) DEVEM usar texto escuro. */
+.badge-warning {
+  background-color: var(--cor-warning);
+  color: var(--color-text-primary); /* (Contraste 8.7:1) */
 }

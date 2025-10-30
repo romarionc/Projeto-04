@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const confirmBtn = modal.querySelector('[data-action="confirm"]');
       const cancelBtn = modal.querySelector('[data-action="cancel"]');
 
-      // (Sua lógica de clonar botões está correta, vamos mantê-la)
+      // (Sua lógica de clonar botões está correta)
       const newConfirmBtn = confirmBtn.cloneNode(true);
       const newCancelBtn = cancelBtn.cloneNode(true);
       confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);

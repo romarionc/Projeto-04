@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dropdownLinks = document.querySelectorAll(
     ".dropdown > a[aria-haspopup='true']"
   );
+  const allNavLinks = mainNav.querySelectorAll("a[href]");
 
   if (navToggle && mainNav) {
     // --- GERENCIAMENTO DO MENU MOBILE ---
@@ -48,44 +49,67 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // --- GERENCIAMENTO DO DROPDOWN DE DESKTOP ---
+    // --- CORREÇÃO: Fechar o menu mobile ao clicar em QUALQUER link ---
+    allNavLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        // Só fecha se o menu mobile estiver aberto
+        if (mainNav.classList.contains("nav-open")) {
+          closeMobileMenu();
+        }
+      });
+    });
+
+    // --- GERENCIAMENTO DO DROPDOWN DE DESKTOP (CORRIGIDO) ---
 
     dropdownLinks.forEach((link) => {
       const submenu = link.nextElementSibling; // O <ul> do submenu
 
-      function toggleDropdown(event) {
-        // Impede a navegação SPA se for um clique para abrir/fechar o dropdown
-        // Permite a navegação se o link for pressionado (Enter)
-        if (event.type === "click") {
-          event.preventDefault();
-        }
-
+      function toggleDropdown(open) {
         const isExpanded = link.getAttribute("aria-expanded") === "true";
+        // Decide se deve abrir ou fechar. Se 'open' for booleano, usa ele, senão, inverte o estado atual.
+        const shouldOpen = typeof open === "boolean" ? open : !isExpanded;
 
-        // Fecha todos os outros dropdowns abertos
-        closeAllDropdowns(link);
-
-        if (isExpanded) {
-          link.setAttribute("aria-expanded", "false");
-          submenu.classList.remove("submenu-open");
-        } else {
+        if (shouldOpen) {
+          // Fecha outros dropdowns abertos
+          closeAllDropdowns(link);
           link.setAttribute("aria-expanded", "true");
           submenu.classList.add("submenu-open");
+        } else {
+          link.setAttribute("aria-expanded", "false");
+          submenu.classList.remove("submenu-open");
         }
       }
 
-      // Abre com Click
-      link.addEventListener("click", toggleDropdown);
+      // Abre/Fecha com Click
+      link.addEventListener("click", (e) => {
+        // O clique DEVE navegar (o spa-router cuidará disso).
+        // Não usamos event.preventDefault().
+
+        // Apenas verificamos se estamos no desktop para abrir o submenu.
+        const isDesktop = window.matchMedia("(min-width: 480px)").matches;
+        if (isDesktop) {
+          toggleDropdown(); // Abre ou fecha o submenu
+        }
+        // No mobile, o link apenas navega e o listener geral acima fecha o menu.
+      });
 
       // Abre com Enter ou Espaço
       link.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault(); // Impede o scroll da página (Espaço)
-          toggleDropdown(e);
+        if (e.key === "Enter") {
+          // Enter: DEVE navegar (comportamento padrão).
+          // Não usamos event.preventDefault().
+          // Apenas garantimos que o menu *abra* para ver os sub-itens.
+          toggleDropdown(true);
+        }
+
+        if (e.key === " ") {
+          // Espaço: NÃO DEVE navegar e NÃO DEVE rolar a página.
+          // DEVE apenas abrir/fechar o submenu.
+          e.preventDefault();
+          toggleDropdown();
         }
       });
     });
-    
 
     // Fecha dropdowns se clicar fora deles
     document.addEventListener("click", (e) => {
