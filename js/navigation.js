@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+    
 
     // Fecha dropdowns se clicar fora deles
     document.addEventListener("click", (e) => {
