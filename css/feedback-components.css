@@ -1,9 +1,24 @@
 /* ESTILOS PARA COMPONENTES DE FEEDBACK (AJUSTADOS PARA ACESSIBILIDADE) */
 
 :root {
-  --cor-danger: #b52635; /* Vermelho mais escuro (4.5:1) */
+  /* TEMA PADRÃO (CLARO) */
+  --cor-danger: #b52635; /* Vermelho escuro (4.5:1) */
   --cor-warning: #ffc107; /* Amarelo (Requer texto escuro) */
-  --cor-info: #0f788a; /* Azul-petróleo mais escuro (4.5:1) */
+  --cor-info: #0f788a; /* Azul-petróleo escuro (4.5:1) */
+}
+
+/* --- TEMA: MODO ESCURO --- */
+[data-theme="dark"] {
+  --cor-danger: #e53e3e; /* Vermelho claro */
+  --cor-warning: #ecc94b; /* Amarelo */
+  --cor-info: #319795; /* Teal claro */
+}
+
+/* --- TEMA: ALTO CONTRASTE --- */
+[data-theme="high-contrast"] {
+  --cor-danger: #b52635; /* OK */
+  --cor-warning: #ffc107; /* Amarelo (Requer texto preto) */
+  --cor-info: #0c5c6a; /* Teal bem escuro */
 }
 
 /* --- COMPONENTE TOAST --- */
@@ -28,7 +43,8 @@
   border-left: 5px solid var(--cor-success);
   opacity: 0;
   transform: translateX(100%);
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    background-color 0.3s ease, color 0.3s ease;
 }
 
 .toast.show {
@@ -90,6 +106,7 @@
   width: 90%;
   max-width: 500px;
   z-index: 1001;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .modal-header {
@@ -146,6 +163,11 @@
   color: var(--cor-surface);
 }
 
+/* Correção para Modo Escuro: Laranja claro precisa de texto escuro */
+[data-theme="dark"] .tag-primary {
+  color: var(--color-text-primary);
+}
+
 .tag-secondary {
   background-color: var(--cor-secondary);
   color: var(--cor-surface);
@@ -157,40 +179,53 @@
 }
 
 /* --- Estilo Base para Badges (Selos) --- */
-/* Use .badge para status ou contagem (ex: "Novo", "3") */
 .badge {
   display: inline-block;
   padding: 0.35em 0.65em;
-  font-size: 0.8em; /* Um pouco menor que o texto ao redor */
+  font-size: 0.8em;
   font-weight: var(--font-weight-bold);
   line-height: 1;
   color: var(--cor-surface);
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  border-radius: 10rem; /* Truque para formato de "pílula" */
-  background-color: var(--cor-primary); /* Cor padrão (laranja corrigida) */
+  border-radius: 10rem;
+  background-color: var(--cor-primary);
+}
+
+/* Correção para Modo Escuro: Laranja claro precisa de texto escuro */
+[data-theme="dark"] .badge {
+  color: var(--color-text-primary);
 }
 
 /* Variações de cor para Badges */
 .badge-secondary {
   background-color: var(--cor-secondary);
+  color: var(--cor-surface);
 }
 
 .badge-success {
   background-color: var(--cor-success);
+  color: var(--cor-surface);
 }
 
 .badge-danger {
-  background-color: var(--cor-danger); /* Cor de perigo corrigida */
+  background-color: var(--cor-danger);
+  color: var(--cor-surface);
 }
 
 .badge-info {
-  background-color: var(--cor-info); /* Cor de info corrigida */
+  background-color: var(--cor-info);
+  color: var(--cor-surface);
 }
 
-/* NOVA REGRA: Badges de aviso (amarelo) DEVEM usar texto escuro. */
+/* REGRA DE CONTRASTE: Badges de aviso (amarelo) DEVEM usar texto escuro. */
 .badge-warning {
   background-color: var(--cor-warning);
   color: var(--color-text-primary); /* Texto escuro para contraste */
+}
+
+/* No Modo Escuro, o texto primário já é claro, então está ok */
+[data-theme="dark"] .badge-warning {
+  color: var(--color-text-primary);
 }

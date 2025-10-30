@@ -1,15 +1,15 @@
 /* atraves do :root vou atibuir as variveis e seus valores */
 
 :root {
-  /* 8 cores especificas (AJUSTADAS PARA ACESSIBILIDADE 4.5:1) */
-  --cor-primary: #d96300; /* Laranja mais escuro */
-  --cor-secondary: #005a9c; /* OK */
-  --color-text-primary: #212529; /* OK */
-  --color-text-secondary: #5a646a; /* Cinza mais escuro */
-  --cor-background: #f8f9fa; /* OK */
-  --cor-surface: #ffffff; /* OK */
-  --cor-border: #dee2e6; /* OK */
-  --cor-success: #1f7c35; /* Verde mais escuro */
+  /* TEMA PADRÃO (CLARO) - Corrigido para Contraste 4.5:1 */
+  --cor-primary: #d96300;
+  --cor-secondary: #005a9c;
+  --color-text-primary: #212529;
+  --color-text-secondary: #5a646a;
+  --cor-background: #f8f9fa;
+  --cor-surface: #ffffff;
+  --cor-border: #dee2e6;
+  --cor-success: #1f7c35;
 
   /* setar minha propria fonte */
   --font-family-base: "Nunito Sans", system-ui, -apple-system, sans-serif;
@@ -46,6 +46,30 @@
   --bp-xl: 1440px; /* Extra Grande */
 }
 
+/* --- TEMA: MODO ESCURO --- */
+[data-theme="dark"] {
+  --cor-primary: #ff9933; /* Laranja mais claro */
+  --cor-secondary: #66b3ff; /* Azul mais claro */
+  --color-text-primary: #f7fafc; /* Quase branco */
+  --color-text-secondary: #a0aec0; /* Cinza claro */
+  --cor-background: #1a202c; /* Fundo escuro */
+  --cor-surface: #2d3748; /* "Caixas" escuras */
+  --cor-border: #4a5568; /* Bordas claras */
+  --cor-success: #38a169; /* Verde claro */
+}
+
+/* --- TEMA: ALTO CONTRASTE --- */
+[data-theme="high-contrast"] {
+  --cor-primary: #c05600; /* Laranja bem escuro */
+  --cor-secondary: #003b6a; /* Azul bem escuro */
+  --color-text-primary: #000000; /* Preto */
+  --color-text-secondary: #000000; /* Preto */
+  --cor-background: #ffffff; /* Branco */
+  --cor-surface: #ffffff; /* Branco */
+  --cor-border: #000000; /* Preto */
+  --cor-success: #1a682b; /* Verde bem escuro */
+}
+
 /* resetar os valores basicos do html */
 
 html {
@@ -62,6 +86,8 @@ body {
   line-height: var(--line-height-base);
   color: var(--color-text-primary);
   background-color: var(--cor-background);
+  /* Adiciona transição suave entre temas */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Classe de utilidade para leitores de tela:
@@ -188,6 +214,8 @@ main section {
   background-color: var(--cor-surface);
   border: 1px solid var(--cor-border);
   border-radius: var(--espaco_modular-xs);
+  /* Adiciona transição suave */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 header {
@@ -230,6 +258,7 @@ img {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   min-width: 220px;
   z-index: 100;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .dropdown:hover .submenu {
@@ -256,6 +285,34 @@ img {
 header {
   /* Garante que o botão fique posicionado relativo ao header */
   position: relative;
+}
+
+/* --- Estilos do Seletor de Tema --- */
+.theme-switcher {
+  display: flex;
+  gap: var(--espaco_modular-xs);
+  position: absolute; /* Posicionamento no mobile */
+  top: var(--espaco_modular-l);
+  /* Pula o padding(L), o botão-hamburger(32px) e um espaço(S) */
+  right: calc(var(--espaco_modular-l) + 32px + var(--espaco_modular-s));
+}
+
+.theme-btn {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--cor-secondary); /* Usa azul (contraste seguro) */
+  background-color: transparent;
+  color: var(--cor-secondary);
+  border-radius: var(--espaco_modular-xs);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Botão Ativo (Contraste verificado e APROVADO em todos os temas) */
+.theme-btn[aria-checked="true"] {
+  background-color: var(--cor-secondary); /* Fundo azul */
+  color: var(--cor-surface); /* Texto da cor da superfície (branco/preto) */
 }
 
 .nav-toggle {
@@ -299,7 +356,8 @@ nav {
   border-left: 1px solid var(--cor-border);
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease,
+    border-color 0.3s ease;
   z-index: 1000;
   /* Ajustar padding para o menu vertical */
   padding: var(--espaco_modular-xxl) var(--espaco_modular-l);
@@ -362,15 +420,25 @@ nav > ul {
 
 /* --- BREAKPOINT: DISPOSITIVOS MAIORES (PÓS-MOBILE) --- */
 /* A partir de 480px, volta ao menu desktop */
-/* não consegui usar a variavel, pois não estav funcionando. */
 @media (min-width: 480px) {
-  /* --- REGRA 'header { display: flex... }' REMOVIDA DAQUI --- */
+  /* --- CORREÇÃO DE LAYOUT (Menu Esquerda, Botões Direita) --- */
+  header {
+    display: flex;
+    flex-wrap: wrap; /* 1. Permite quebrar a linha */
+    align-items: center;
+  }
+
+  /* 2. Força o h1 a ocupar a linha inteira */
+  header > h1 {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
 
   .nav-toggle {
     display: none; /* Esconde o hamburger */
   }
 
-  /* Restaura o layout da <nav> */
+  /* 3. Nav (menu) fica estático no início da segunda linha */
   nav {
     position: static;
     transform: none;
@@ -381,15 +449,29 @@ nav > ul {
     box-shadow: none;
     padding: 0;
     visibility: visible;
+    order: 2; /* Ordem visual: Menu primeiro */
+    margin-left: 0; /* Garante que fique à esquerda */
+    margin-right: var(
+      --espaco_modular-m
+    ); /* Espaço entre menu e botões */
   }
 
-  /* Restaura o layout flex do menu principal */
+  /* 4. A lista de links NUNCA quebra a linha */
   nav > ul {
     display: flex;
     flex-direction: row;
     gap: var(--espaco_modular-m);
-    width: auto; /* Restaura a largura automática */
+    width: auto;
+    /* flex-wrap: wrap; <-- REMOVIDO */
   }
+
+  /* 5. Botões de tema ficam estáticos e são empurrados para a direita */
+  .theme-switcher {
+    position: static;
+    order: 3; /* Ordem visual: Botões depois do menu */
+    margin-left: auto; /* Empurra os botões para a direita */
+  }
+  /* --- FIM DA CORREÇÃO --- */
 
   /* Impede que os links principais quebrem */
   nav > ul > li > a {
@@ -398,8 +480,8 @@ nav > ul {
 
   /* Restaura o layout do dropdown */
   .dropdown .submenu {
-    display: none; /* Esconde novamente para o hover */
-    position: absolute; /* Devolve a posição */
+    display: none;
+    position: absolute;
     background-color: var(--cor-surface);
     border: 1px solid var(--cor-border);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -407,7 +489,7 @@ nav > ul {
     padding: var(--espaco_modular-xs) 0;
   }
   .dropdown:hover .submenu {
-    display: block; /* Reativa o hover */
+    display: block;
   }
   .submenu li a {
     padding: var(--espaco_modular-s) var(--espaco_modular-m);

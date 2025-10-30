@@ -16,6 +16,18 @@
 <body>
   <header>
     <h1>ONG - Comida para todos</h1>
+
+    <div class="theme-switcher" role="radiogroup" aria-label="Seletor de tema">
+      <button type="button" class="theme-btn" data-theme-btn="light" role="radio" aria-checked="false" aria-label="Ativar modo claro">
+        Claro
+      </button>
+      <button type="button" class="theme-btn" data-theme-btn="dark" role="radio" aria-checked="false" aria-label="Ativar modo escuro">
+        Escuro
+      </button>
+      <button type="button" class="theme-btn" data-theme-btn="high-contrast" role="radio" aria-checked="false" aria-label="Ativar modo alto contraste">
+        Contraste
+      </button>
+    </div>
     <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
@@ -71,6 +83,7 @@
 
   <script src="js/navigation.js"></script>
   <script src="js/feedback-components.js"></script>
+  <script src="js/theme-switcher.js"></script>
   <script type="module" src="js/spa-router.js"></script>
 </body>
 
