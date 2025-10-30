@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navToggle.classList.remove("is-active");
       navToggle.setAttribute("aria-expanded", "false");
       document.body.classList.remove("nav-lock-scroll");
+      mainNav.setAttribute("aria-hidden", "true"); // OCULTA do leitor de tela
       // Devolve o foco ao botão que abriu o menu
       navToggle.focus();
     }
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navToggle.classList.add("is-active");
       navToggle.setAttribute("aria-expanded", "true");
       document.body.classList.add("nav-lock-scroll");
+      mainNav.setAttribute("aria-hidden", "false"); // EXIBE para o leitor de tela
       // Move o foco para o primeiro item do menu
       firstFocusableEl?.focus();
     }
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // --- CORREÇÃO: Fechar o menu mobile ao clicar em QUALQUER link ---
+    // Fechar o menu mobile ao clicar em QUALQUER link
     allNavLinks.forEach((link) => {
       link.addEventListener("click", () => {
         // Só fecha se o menu mobile estiver aberto
@@ -66,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       function toggleDropdown(open) {
         const isExpanded = link.getAttribute("aria-expanded") === "true";
-        // Decide se deve abrir ou fechar. Se 'open' for booleano, usa ele, senão, inverte o estado atual.
+        // Decide se deve abrir ou fechar.
         const shouldOpen = typeof open === "boolean" ? open : !isExpanded;
 
         if (shouldOpen) {
@@ -80,24 +82,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Abre/Fecha com Click
+      // Abre/Fecha com Click (e navega)
       link.addEventListener("click", (e) => {
-        // O clique DEVE navegar (o spa-router cuidará disso).
-        // Não usamos event.preventDefault().
-
         // Apenas verificamos se estamos no desktop para abrir o submenu.
         const isDesktop = window.matchMedia("(min-width: 480px)").matches;
         if (isDesktop) {
           toggleDropdown(); // Abre ou fecha o submenu
         }
-        // No mobile, o link apenas navega e o listener geral acima fecha o menu.
       });
 
       // Abre com Enter ou Espaço
       link.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           // Enter: DEVE navegar (comportamento padrão).
-          // Não usamos event.preventDefault().
           // Apenas garantimos que o menu *abra* para ver os sub-itens.
           toggleDropdown(true);
         }

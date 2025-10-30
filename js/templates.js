@@ -39,6 +39,9 @@ export function templateProjetos(dados) {
     <section id="carrocel">
       <h3>${dados.titulo}</h3>
       <div class="carousel-container" tabindex="0" role="region" aria-label="Carrossel de projetos em ação">
+        
+        <div class="visually-hidden" aria-live="polite" data-carousel-live-region></div>
+
         <div class="carousel-wrapper">
           
           ${renderCarouselItems(dados.imagensCarousel)}

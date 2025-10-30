@@ -10,9 +10,18 @@ function setupCarousel() {
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
   const items = document.querySelectorAll(".grid-item");
+  // Encontra o "locutor"
+  const liveRegion = container?.querySelector("[data-carousel-live-region]");
 
-  if (!container || !wrapper || !prevBtn || !nextBtn || items.length === 0) {
-    console.warn("Elementos do carrossel não encontrados.");
+  if (
+    !container ||
+    !wrapper ||
+    !prevBtn ||
+    !nextBtn ||
+    items.length === 0 ||
+    !liveRegion
+  ) {
+    console.warn("Elementos do carrossel ou 'live region' não encontrados.");
     return;
   }
 
@@ -20,6 +29,7 @@ function setupCarousel() {
   let itemsVisible = 1;
   let itemWidth = 0; // Vamos armazenar a largura do item
   let maxIndex = 0; // O índice máximo que podemos deslizar
+  const totalItems = items.length; // Total de itens para o anúncio
 
   function calculateLayout() {
     const containerWidth = container.offsetWidth;
@@ -35,7 +45,7 @@ function setupCarousel() {
     itemsVisible = Math.max(1, Math.floor(containerWidth / itemWidth));
 
     // Calcula o índice máximo permitido
-    maxIndex = items.length - itemsVisible;
+    maxIndex = totalItems - itemsVisible;
 
     // Garante que o índice atual não seja inválido após redimensionar
     if (currentIndex > maxIndex) {
@@ -46,13 +56,19 @@ function setupCarousel() {
       maxIndex = 0;
     }
 
-    updateCarousel();
+    updateCarousel(false); // Não anuncia na primeira carga/redimensionamento
   }
 
-  function updateCarousel() {
+  function updateCarousel(announce = true) {
     // Muda a lógica: move em pixels (itemWidth) em vez de %
     const offsetPx = currentIndex * -itemWidth;
     wrapper.style.transform = `translateX(${offsetPx}px)`;
+
+    // Anuncia o slide atual
+    if (announce && liveRegion) {
+      // Anuncia o índice visível (ex: "Slide 1 de 12")
+      liveRegion.textContent = `Slide ${currentIndex + 1} de ${totalItems}`;
+    }
   }
 
   function showNext() {
@@ -61,7 +77,7 @@ function setupCarousel() {
     if (currentIndex > maxIndex) {
       currentIndex = 0;
     }
-    updateCarousel();
+    updateCarousel(); // Anuncia
   }
 
   function showPrev() {
@@ -70,14 +86,13 @@ function setupCarousel() {
     if (currentIndex < 0) {
       currentIndex = maxIndex;
     }
-    updateCarousel();
+    updateCarousel(); // Anuncia
   }
 
   nextBtn.addEventListener("click", showNext);
   prevBtn.addEventListener("click", showPrev);
 
   // Adiciona navegação pelas setas do teclado
-  // Funciona por causa do tabindex="0" no .carousel-container
   container.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") {
       e.preventDefault(); // Impede o scroll da página

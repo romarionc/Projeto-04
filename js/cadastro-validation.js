@@ -8,10 +8,38 @@ function setupCadastroValidation() {
   const form = document.getElementById("volunteer-form");
   if (!form) return;
 
+  const allFields = form.querySelectorAll("input, select");
+
+  /**
+   * Atualiza o estado aria-invalid do campo com base na validação,
+   * mas apenas se o formulário já foi submetido (tem 'was-validated')
+   */
+  function updateFieldValidity(field) {
+    if (form.classList.contains("was-validated")) {
+      if (field.checkValidity()) {
+        field.setAttribute("aria-invalid", "false");
+      } else {
+        field.setAttribute("aria-invalid", "true");
+      }
+    }
+  }
+
+  /**
+   * Limpa todos os estados de validação ARIA e a classe do formulário
+   */
+  function clearAllValidity() {
+    allFields.forEach((field) => {
+      field.removeAttribute("aria-invalid");
+    });
+    form.classList.remove("was-validated");
+  }
+
   form.addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o envio real do formulário
-
     form.classList.add("was-validated");
+
+    // Atualiza o ARIA de todos os campos no momento da submissão
+    allFields.forEach(updateFieldValidity);
 
     if (!form.checkValidity()) {
       window.showToast?.(
@@ -21,7 +49,7 @@ function setupCadastroValidation() {
       );
 
       // Foca no primeiro campo inválido
-      const firstInvalidField = form.querySelector(":invalid");
+      const firstInvalidField = form.querySelector("[aria-invalid='true']");
       if (firstInvalidField) {
         firstInvalidField.focus();
       }
@@ -44,7 +72,7 @@ function setupCadastroValidation() {
           8000
         );
         form.reset();
-        form.classList.remove("was-validated");
+        clearAllValidity(); // Limpa os estados de validação
       },
       onCancel: () => {
         window.showToast?.(
@@ -56,11 +84,10 @@ function setupCadastroValidation() {
     });
   });
 
-  form.querySelectorAll("input, select").forEach((element) => {
+  // Validação em tempo real após a primeira tentativa de envio
+  allFields.forEach((element) => {
     element.addEventListener("input", () => {
-      if (form.classList.contains("was-validated")) {
-        element.checkValidity();
-      }
+      updateFieldValidity(element);
     });
   });
 }

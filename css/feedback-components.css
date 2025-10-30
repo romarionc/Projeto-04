@@ -1,13 +1,9 @@
 /* ESTILOS PARA COMPONENTES DE FEEDBACK (AJUSTADOS PARA ACESSIBILIDADE) */
 
 :root {
-  /* --cor-danger: #dc3545; (Original: 3.99:1) */
-  --cor-danger: #b52635; /* (Novo: 4.5:1) Vermelho mais escuro */
-
-  --cor-warning: #ffc107; /* (OK) Amarelo - Requer texto escuro */
-
-  /* --cor-info: #17a2b8; (Original: 3.2:1) */
-  --cor-info: #0f788a; /* (Novo: 4.5:1) Azul-petróleo mais escuro */
+  --cor-danger: #b52635; /* Vermelho mais escuro (4.5:1) */
+  --cor-warning: #ffc107; /* Amarelo (Requer texto escuro) */
+  --cor-info: #0f788a; /* Azul-petróleo mais escuro (4.5:1) */
 }
 
 /* --- COMPONENTE TOAST --- */
@@ -25,7 +21,7 @@
   min-width: 300px;
   max-width: 350px;
   background-color: var(--cor-surface);
-  color: var(--color-text-primary); /* (OK: 15.3:1) */
+  color: var(--color-text-primary);
   padding: 1rem 1.5rem;
   border-radius: var(--espaco_modular-xs);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -56,7 +52,7 @@
 .toast strong {
   display: block;
   margin-bottom: 0.25rem;
-  color: var(--cor-secondary); /* (OK: 5.9:1) */
+  color: var(--cor-secondary);
 }
 
 /* --- COMPONENTE MODAL --- */
@@ -130,7 +126,7 @@
   border-top: 1px solid var(--cor-border);
 }
 
-/* --- tag e badge (COM CORREÇÕES) --- */
+/* --- tag e badge (COM CORREÇÕES DE CONTRASTE) --- */
 
 /* .tag para categorizar  */
 .tag {
@@ -141,9 +137,7 @@
   line-height: 1.2;
   border-radius: var(--espaco_modular-xs);
   background-color: var(--cor-border); /* Cor padrão (cinza) */
-
-  /* CORREÇÃO: (Original: 2.1:1) */
-  color: var(--color-text-primary); /* (Novo: 9.3:1) */
+  color: var(--color-text-primary); /* CORRIGIDO: Texto escuro para contraste */
 }
 
 /* Variações de cor para Tags */
@@ -198,5 +192,5 @@
 /* NOVA REGRA: Badges de aviso (amarelo) DEVEM usar texto escuro. */
 .badge-warning {
   background-color: var(--cor-warning);
-  color: var(--color-text-primary); /* (Contraste 8.7:1) */
+  color: var(--color-text-primary); /* Texto escuro para contraste */
 }

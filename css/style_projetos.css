@@ -2,23 +2,14 @@
 
 :root {
   /* 8 cores especificas (AJUSTADAS PARA ACESSIBILIDADE 4.5:1) */
-
-  /* --cor-primary: #ff7a00; (Original: 3.0:1) */
-  --cor-primary: #d96300; /* (Novo: 4.5:1) Laranja mais escuro para links e badges */
-
-  --cor-secondary: #005a9c; /* (OK: 5.9:1) */
-
-  --color-text-primary: #212529; /* (OK: 15.3:1) */
-
-  /* --color-text-secondary: #6c757d; (Original: 4.28:1 em #f8f9fa) */
-  --color-text-secondary: #5a646a; /* (Novo: 4.5:1 em #f8f9fa) Cinza mais escuro */
-
-  --cor-background: #f8f9fa; /* (OK) */
-  --cor-surface: #ffffff; /* (OK) */
-  --cor-border: #dee2e6; /* (OK) */
-
-  /* --cor-success: #28a745; (Original: 3.97:1) */
-  --cor-success: #1f7c35; /* (Novo: 4.5:1) Verde mais escuro */
+  --cor-primary: #d96300; /* Laranja mais escuro */
+  --cor-secondary: #005a9c; /* OK */
+  --color-text-primary: #212529; /* OK */
+  --color-text-secondary: #5a646a; /* Cinza mais escuro */
+  --cor-background: #f8f9fa; /* OK */
+  --cor-surface: #ffffff; /* OK */
+  --cor-border: #dee2e6; /* OK */
+  --cor-success: #1f7c35; /* Verde mais escuro */
 
   /* setar minha propria fonte */
   --font-family-base: "Nunito Sans", system-ui, -apple-system, sans-serif;

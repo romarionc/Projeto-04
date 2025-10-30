@@ -4,32 +4,36 @@ import { dadosProjetos } from "./projetos-data.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const content = document.getElementById("spa-content");
+  const baseTitle = "ONG - Comida para Todos";
 
   async function loadPage(route) {
-    let path, cssPath, html;
+    let path, cssPath, html, pageTitle;
 
     switch (route) {
       case "/":
         path = "pages/home.html";
         cssPath = "css/style_index.css";
+        pageTitle = "Página Inicial"; // Título para o leitor de tela
         break;
       case "/projetos":
         cssPath = "css/style_projetos.css";
         html = templateProjetos(dadosProjetos);
+        pageTitle = "Projetos Sociais"; // Título para o leitor de tela
         break;
       case "/cadastro":
         path = "pages/cadastro.html";
         cssPath = "css/style_cadastro.css";
+        pageTitle = "Cadastro de Voluntários"; // Título para o leitor de tela
         break;
       default:
         path = "pages/home.html";
         cssPath = "css/style_index.css";
+        pageTitle = "Página Inicial";
     }
 
     try {
       if (!html) {
         const response = await fetch(path);
-        // ADICIONADO: Verificar se o fetch foi bem sucedido
         if (!response.ok) {
           throw new Error(
             `Erro ao buscar HTML: ${response.status} ${response.statusText}`
@@ -39,6 +43,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       content.innerHTML = html;
+
+      // --- MUDANÇAS PARA LEITORES DE TELA ---
+      // 1. Atualiza o título da aba do navegador (anuncia a mudança de página)
+      document.title = `${pageTitle} | ${baseTitle}`;
+
+      // 2. Move o foco para o novo conteúdo
+      // Encontra o primeiro <h2> (ou <h3>, <section>) no conteúdo carregado
+      const newHeading = content.querySelector("h2");
+      if (newHeading) {
+        // Adiciona tabindex="-1" para permitir que ele receba foco via JS
+        newHeading.setAttribute("tabindex", "-1");
+        // Move o foco do leitor de tela para o novo título
+        newHeading.focus();
+      }
+      // --- FIM DAS MUDANÇAS ---
 
       // tira estilos antigos
       document
@@ -51,11 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
       link.href = cssPath + "?v=" + Date.now();
       link.setAttribute("data-page-style", "true");
 
-      // não estava achando o erro 'onerror' para reportar falhas no CSS
       link.onerror = () => {
         console.error(`Falha ao carregar o arquivo CSS: ${cssPath}`);
-        // Mesmo se o CSS falhar, tentamos carregar o JS
-        // (Remova isso se o JS depender estritamente do CSS)
         loadPageScripts(route);
       };
 
@@ -67,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       //  carrega o CSS
       document.head.appendChild(link);
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // (Scroll para o topo removido, pois o foco no H2 já faz isso)
     } catch (err) {
       // O 'fetch' do HTML falhou
       console.error("Erro ao carregar página SPA:", err);
