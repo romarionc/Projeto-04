@@ -99,7 +99,7 @@ Este é um projeto front-end estático. Para executá-lo localmente, siga os pas
     ```
 3.  Abra o arquivo `index.html` no seu navegador de preferência.
 
-## 📝 Licença
+## 📝 Autor
 
 Vamos nos conectar!
 
