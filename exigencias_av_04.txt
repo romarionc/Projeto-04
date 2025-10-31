@@ -12,16 +12,16 @@ Desenvolver sistema de releases com versionamento semântico.
 
 •
 Acessibilidade (WCAG 2.1 Nível AA)
-Implementar navegação por teclado em todos os componentes;
-Criar estrutura semântica adequada;
-Garantir contraste mínimo de 4.5:1 para texto normal;
-Implementar suporte completo para leitores de tela;
-Criar versão de alto contraste e modo escuro acessível.
+Implementar navegação por teclado em todos os componentes; ok
+Criar estrutura semântica adequada; ok 
+Garantir contraste mínimo de 4.5:1 para texto normal; ok 
+Implementar suporte completo para leitores de tela; ok 
+Criar versão de alto contraste e modo escuro acessível. ok 
 
 •
 Otimização para Produção
 Implementar minificação de CSS, JavaScript e HTML;
-Configurar compressão de imagens.
+Configurar compressão de imagens. ok 
 
 O que deverá ser entregue:
 
