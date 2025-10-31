@@ -1,4 +1,4 @@
-import{_ as r}from"./app-C8hsNNRh.js";function d(a){return a.map(o=>`
+import{_ as r}from"./app-BIb96l52.js";function d(a){return a.map(o=>`
     <div class="grid-item" role="group" aria-label="Slide">
       <img src="${o.src}" alt="${o.alt}">
     </div>
@@ -178,4 +178,4 @@ import{_ as r}from"./app-C8hsNNRh.js";function d(a){return a.map(o=>`
 \r
   <br>\r
   <img src="/img/seja_voluntario.webp" alt="voluntários abraçados">\r
-</section>`,t=document.getElementById("spa-content"),m="ONG - Comida para Todos";async function u(a){let o,e;switch(a){case"/":o=i,e="Página Inicial";break;case"/projetos":o=l(p),e="Projetos Sociais";break;case"/cadastro":o=c,e="Cadastro de Voluntários";break;default:o=i,e="Página Inicial"}try{t.innerHTML=o,document.title=`${e} | ${m}`;const n=t.querySelector("h2");n&&(n.setAttribute("tabindex","-1"),n.focus()),v(a)}catch(n){console.error("Erro ao carregar página SPA:",n)}}function v(a){a==="/projetos"&&r(()=>import("./script-B6-lzYyG.js"),[]).then(o=>o.initCarousel?.()).catch(o=>console.error("Erro importando script.js:",o)),a==="/cadastro"&&r(()=>import("./cadastro-validation-ClOe4udU.js"),[]).then(o=>o.initCadastroValidation?.()).catch(o=>console.error("Erro importando cadastro-validation.js:",o))}function s(){const a=window.location.hash.slice(1);u(a||"/")}window.addEventListener("hashchange",s);s();
+</section>`,t=document.getElementById("spa-content"),m="ONG - Comida para Todos";async function u(a){let o,e;switch(a){case"/":o=i,e="Página Inicial";break;case"/projetos":o=l(p),e="Projetos Sociais";break;case"/cadastro":o=c,e="Cadastro de Voluntários";break;default:o=i,e="Página Inicial"}try{t.innerHTML=o,document.title=`${e} | ${m}`;const n=t.querySelector("h2");n&&(n.setAttribute("tabindex","-1"),n.focus()),v(a)}catch(n){console.error("Erro ao carregar página SPA:",n)}}function v(a){a==="/projetos"&&r(()=>import("./script-B6-lzYyG.js"),[],import.meta.url).then(o=>o.initCarousel?.()).catch(o=>console.error("Erro importando script.js:",o)),a==="/cadastro"&&r(()=>import("./cadastro-validation-ClOe4udU.js"),[],import.meta.url).then(o=>o.initCadastroValidation?.()).catch(o=>console.error("Erro importando cadastro-validation.js:",o))}function s(){const a=window.location.hash.slice(1);u(a||"/")}window.addEventListener("hashchange",s);s();
