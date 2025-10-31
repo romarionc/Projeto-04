@@ -1,4 +1,4 @@
-import{_ as r}from"./app-Crc4FzRJ.js";function d(a){return a.map(o=>`
+import{_ as r}from"./app-D92LP4PD.js";function d(a){return a.map(o=>`
     <div class="grid-item" role="group" aria-label="Slide">
       <img src="${o.src}" alt="${o.alt}">
     </div>
@@ -57,9 +57,9 @@ import{_ as r}from"./app-Crc4FzRJ.js";function d(a){return a.map(o=>`
       <p>Conta Corrente: 12346578-9</p>
       <p>Chave Pix: foodforall@foodforall.com</p>
       
-      <img src="/img/pix.webp" alt="Logo do PIX para doações.">
+      <img src="img/pix.webp" alt="Logo do PIX para doações.">
     </section>
-  `}const p={titulo:"Nossos Projetos em Ação",imagensCarousel:[{src:"../img/doacao-01.webp",alt:"Voluntários montando cestas básicas para doação."},{src:"../img/doacao-02.webp",alt:"Pessoa recebendo um prato de sopa quente."},{src:"../img/doacao-03.webp",alt:"Caixa de papelão repleta de alimentos não perecíveis."},{src:"../img/doacao-04.webp",alt:"Criança comendo uma maçã."},{src:"../img/doacao-05.webp",alt:"Distribuição de sacolas de alimentos para a comunidade."},{src:"../img/doacao-06.webp",alt:"Agricultor doando vegetais frescos para a ONG."},{src:"../img/doacao-07.webp",alt:"Veículo da ONG sendo carregado com doações de alimentos."},{src:"../img/doacao-08.webp",alt:"Armazém da ONG com prateleiras cheias de alimentos."},{src:"../img/doacao-09.webp",alt:"Equipe de voluntários da 'Comida para Todos'."},{src:"../img/doacao-10.webp",alt:"Pessoa recebendo uma cesta básica de um voluntário."},{src:"../img/doacao-11.webp",alt:"Arroz e feijão para doação."},{src:"../img/doacao-12.webp",alt:"Pessoas se alimentando em um refeitório comunitário."}]},i=`<section>\r
+  `}const p={titulo:"Nossos Projetos em Ação",imagensCarousel:[{src:"img/doacao-01.webp",alt:"Voluntários montando cestas básicas para doação."},{src:"img/doacao-02.webp",alt:"Pessoa recebendo um prato de sopa quente."},{src:"img/doacao-03.webp",alt:"Caixa de papelão repleta de alimentos não perecíveis."},{src:"img/doacao-04.webp",alt:"Criança comendo uma maçã."},{src:"img/doacao-05.webp",alt:"Distribuição de sacolas de alimentos para a comunidade."},{src:"img/doacao-06.webp",alt:"Agricultor doando vegetais frescos para a ONG."},{src:"img/doacao-07.webp",alt:"Veículo da ONG sendo carregado com doações de alimentos."},{src:"img/doacao-08.webp",alt:"Armazém da ONG com prateleiras cheias de alimentos."},{src:"img/doacao-09.webp",alt:"Equipe de voluntários da 'Comida para Todos'."},{src:"img/doacao-10.webp",alt:"Pessoa recebendo uma cesta básica de um voluntário."},{src:"img/doacao-11.webp",alt:"Arroz e feijão para doação."},{src:"img/doacao-12.webp",alt:"Pessoas se alimentando em um refeitório comunitário."}]},i=`<section>\r
   <h2>Quem somos</h2>\r
   <p>\r
     A <strong>Comida para Todos</strong> é uma organização não governamental (ONG) sem fins lucrativos,\r
